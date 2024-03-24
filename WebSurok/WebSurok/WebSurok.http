@@ -1,0 +1,6 @@
+@WebSurok_HostAddress = http://localhost:5096
+
+GET {{WebSurok_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

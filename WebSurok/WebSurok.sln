@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34714.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebSurok", "WebSurok\WebSurok.csproj", "{7B22DF03-C461-44BC-B01B-12EA233C5812}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B22DF03-C461-44BC-B01B-12EA233C5812}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B22DF03-C461-44BC-B01B-12EA233C5812}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B22DF03-C461-44BC-B01B-12EA233C5812}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B22DF03-C461-44BC-B01B-12EA233C5812}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2762829-C591-4E7D-9555-C0FB44B39635}
+	EndGlobalSection
+EndGlobal
