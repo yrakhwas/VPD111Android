@@ -17,7 +17,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ImageView imageView = findViewById(R.id.imageView);
-        String url = "https://theadultman.com/wp-content/w3-webp/uploads/2021/06/High-value-woman_-Attractive-brunette-girl-in-yellow-top-smiling-.jpgw3.webp";
+//        String url = "https://theadultman.com/wp-content/w3-webp/uploads/2021/06/High-value-woman_-Attractive-brunette-girl-in-yellow-top-smiling-.jpgw3.webp";
+        String url = "http://10.0.2.2:5096/images/2.webp";
 
         Glide.with(HomeApplication.getAppContext())
                 .load(url)
