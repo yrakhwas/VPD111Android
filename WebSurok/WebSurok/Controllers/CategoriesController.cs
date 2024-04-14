@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SixLabors.ImageSharp;
+using SixLabors.ImageSharp.Formats.Webp;
+using SixLabors.ImageSharp.Processing;
 using WebSurok.Data;
 using WebSurok.Data.Entities;
 using WebSurok.Models.Categories;
@@ -24,13 +27,37 @@ namespace WebSurok.Controllers
             return Ok(list);
         }
         [HttpPost]
-        public IActionResult Create([FromBody] CategoryCreateViewModel model)
+        public async Task<IActionResult> Create([FromForm] CategoryCreateViewModel model)
         {
             var category = new CategoryEntity
             {
                 Name = model.Name,
                 Description = model.Description
             };
+
+            if (model.Image != null)
+            {
+                using MemoryStream ms = new MemoryStream();
+                await model.Image.CopyToAsync(ms);
+
+                using Image image = Image.Load(ms.ToArray());
+
+                image.Mutate(x =>
+                {
+                    x.Resize(new ResizeOptions
+                    {
+                        Size = new Size(1200),
+                        Mode = ResizeMode.Max
+                    });
+                });
+                string imageName = Path.GetRandomFileName() + ".webp";
+                string dirSaveImage = Path.Combine(Directory.GetCurrentDirectory(), "images", imageName);
+
+                using var stream = System.IO.File.Create(dirSaveImage);
+                await image.SaveAsync(stream, new WebpEncoder());
+                category.Image = imageName;
+            }
+
             _appContext.Categories.Add(category);
             _appContext.SaveChanges();
             return Ok(category);
