@@ -39,9 +39,9 @@ namespace WebSurok.Controllers
         }
 
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var user = GetUserAuthAsync();
+            var user = await GetUserAuthAsync();
             var list = _appContext.Categories
                 .Where(u => u.UserId == user.Id)
                 .Select(x => _mapper.Map<CategoryItemViewModel>(x))
@@ -51,7 +51,7 @@ namespace WebSurok.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] CategoryCreateViewModel model)
         {
-            var user = GetUserAuthAsync();
+            var user = await GetUserAuthAsync();
             var category = new CategoryEntity
             {
                 Name = model.Name,
@@ -86,10 +86,11 @@ namespace WebSurok.Controllers
             _appContext.SaveChanges();
             return Ok(_mapper.Map<CategoryItemViewModel>(category));
         }
+
         [HttpPut]
         public async Task<IActionResult> Edit([FromBody] CategoryEditViewModel model)
         {
-            var user = GetUserAuthAsync();
+            var user = await GetUserAuthAsync();
             var category = _appContext.Categories
                 .Where(x => x.UserId == user.Id)
                 .Select(x => _mapper.Map<CategoryItemViewModel>(x))
@@ -98,6 +99,7 @@ namespace WebSurok.Controllers
             {
                 return NotFound();
             }
+
 
             if (model.Image != null)
             {
@@ -147,11 +149,10 @@ namespace WebSurok.Controllers
             return Ok(_mapper.Map<CategoryItemViewModel>(category));
         }
 
-
         [HttpDelete("{id}")]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var user = GetUserAuthAsync();
+            var user = await GetUserAuthAsync();
             var category = _appContext.Categories
                 .Where(x => x.UserId == user.Id)
                 .SingleOrDefault(x => x.Id == id);
