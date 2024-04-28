@@ -93,7 +93,7 @@ namespace WebSurok.Controllers
             var user = await GetUserAuthAsync();
             var category = _appContext.Categories
                 .Where(x => x.UserId == user.Id)
-                .Select(x => _mapper.Map<CategoryItemViewModel>(x))
+                //.Select(x => _mapper.Map<CategoryItemViewModel>(x))
                 .SingleOrDefault(x => x.Id == model.Id);
             if (category == null)
             {
