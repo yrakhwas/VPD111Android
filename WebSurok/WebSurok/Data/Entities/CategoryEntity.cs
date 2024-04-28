@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebSurok.Data.Entities.Identity;
 
 namespace WebSurok.Data.Entities
 {
@@ -17,6 +18,10 @@ namespace WebSurok.Data.Entities
 
         [StringLength(255)]
         public string Image { get; set; }
+
+        [ForeignKey("User")]
+        public long? UserId { get; set; }
+        public virtual UserEntity User { get; set; }
 
     }
 }

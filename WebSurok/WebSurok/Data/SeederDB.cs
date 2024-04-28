@@ -35,6 +35,7 @@ namespace WebSurok.Data
                     }
                 }
 
+                var userId = 0L;
                 if (!context.Users.Any())
                 {
                     UserEntity user = new()
@@ -48,6 +49,7 @@ namespace WebSurok.Data
                         .Result;
                     if (result.Succeeded)
                     {
+                        userId = user.Id;
                         result = userManager
                             .AddToRoleAsync(user, Roles.Admin)
                             .Result;
@@ -61,13 +63,17 @@ namespace WebSurok.Data
                     var kovbasy = new CategoryEntity
                     {
                         Name = "Ковбаси",
-                        Description = "Хороші і довго ковбаси"
+                        Description = "Хороші і довго ковбаси",
+                        UserId = userId,
+                        Image = "kovbasa.webp"
                     };
                     var vsutiy = new CategoryEntity
                     {
                         Name = "Взуття",
                         Description = "Гарне взуття із гарнатуєю 5 років." +
-                        "Можна нирять під воду."
+                        "Можна нирять під воду.",
+                        UserId = userId,
+                        Image = "shoes.webp"
                     };
                     context.Categories.Add(kovbasy);
                     context.Categories.Add(vsutiy);
